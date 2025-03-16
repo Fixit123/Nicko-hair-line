@@ -1,0 +1,25 @@
+name: Dependency Check
+
+on:
+  pull_request:
+    paths:
+      - 'package.json'
+      - 'package-lock.json'
+
+jobs:
+  check-dependencies:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          
+      - name: Check for Next.js/React version changes
+        run: |
+          git diff origin/main...HEAD -- package.json | grep -E '"(next|react|react-dom)"' || true
+          
+          if git diff origin/main...HEAD -- package.json | grep -E '"(next|react|react-dom)".*[0-9]+\.[0-9]+\.[0-9]+"' | grep -q '^+'; then
+            echo "::warning::⚠️ WARNING: This PR changes Next.js or React versions!"
+            echo "::warning::Please ensure these changes have been thoroughly tested."
+            echo "::warning::Refer to README.md for the proper update process."
+          fi 
