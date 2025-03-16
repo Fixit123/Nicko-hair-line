@@ -136,7 +136,7 @@ export default function BookingForm({ services }: BookingFormProps) {
               id="service"
               required
               value={selectedService}
-              onChange={(e) => setSelectedService(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setSelectedService(e.target.value)}
               className="block w-full px-4 py-3 rounded-lg border-gray-300 shadow-sm focus:border-black focus:ring-2 focus:ring-black/20 bg-white/80 text-black transition-all duration-200"
             >
               <option value="" className="text-gray-500">Select a service</option>
@@ -153,7 +153,7 @@ export default function BookingForm({ services }: BookingFormProps) {
                 animate={{ opacity: 1, y: 0 }}
                 type="text"
                 value={customService}
-                onChange={(e) => setCustomService(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setCustomService(e.target.value)}
                 placeholder="Enter your desired service"
                 required
                 className="mt-2 block w-full px-4 py-3 rounded-lg border-gray-300 shadow-sm focus:border-black focus:ring-2 focus:ring-black/20 bg-white/80 text-black placeholder-gray-500 transition-all duration-200"
@@ -191,7 +191,7 @@ export default function BookingForm({ services }: BookingFormProps) {
               id="time"
               required
               value={selectedTime}
-              onChange={(e) => setSelectedTime(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setSelectedTime(e.target.value)}
               className="block w-full px-4 py-3 rounded-lg border-gray-300 shadow-sm focus:border-black focus:ring-2 focus:ring-black/20 bg-white/80 text-black transition-all duration-200"
             >
               <option value="" className="text-gray-500">Select a time</option>
@@ -212,7 +212,7 @@ export default function BookingForm({ services }: BookingFormProps) {
                 animate={{ opacity: 1, y: 0 }}
                 type="time"
                 value={customTime}
-                onChange={(e) => setCustomTime(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setCustomTime(e.target.value)}
                 required
                 className="mt-2 block w-full px-4 py-3 rounded-lg border-gray-300 shadow-sm focus:border-black focus:ring-2 focus:ring-black/20 bg-white/80 text-black transition-all duration-200"
               />
