@@ -19,6 +19,10 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 
+// Type-safe wrapper for Slot component
+type SlotProps = React.ComponentPropsWithoutRef<typeof Slot>
+const TypeSafeSlot = Slot as React.ComponentType<SlotProps>
+
 const SIDEBAR_COOKIE_NAME = "sidebar:state"
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
 const SIDEBAR_WIDTH = "16rem"
@@ -432,10 +436,9 @@ const SidebarGroupLabel = React.forwardRef<
   HTMLDivElement,
   React.ComponentProps<"div"> & { asChild?: boolean }
 >(({ className, asChild = false, ...props }, ref) => {
-  const Comp = asChild ? Slot : "div"
-
+  // Simplified version that doesn't use Slot
   return (
-    <Comp
+    <div
       ref={ref}
       data-sidebar="group-label"
       className={cn(
@@ -453,10 +456,9 @@ const SidebarGroupAction = React.forwardRef<
   HTMLButtonElement,
   React.ComponentProps<"button"> & { asChild?: boolean }
 >(({ className, asChild = false, ...props }, ref) => {
-  const Comp = asChild ? Slot : "button"
-
+  // Simplified version that doesn't use Slot
   return (
-    <Comp
+    <button
       ref={ref}
       data-sidebar="group-action"
       className={cn(
@@ -553,11 +555,10 @@ const SidebarMenuButton = React.forwardRef<
     },
     ref
   ) => {
-    const Comp = asChild ? Slot : "button"
     const { isMobile, state } = useSidebar()
 
     const button = (
-      <Comp
+      <button
         ref={ref}
         data-sidebar="menu-button"
         data-size={size}
@@ -599,10 +600,9 @@ const SidebarMenuAction = React.forwardRef<
     showOnHover?: boolean
   }
 >(({ className, asChild = false, showOnHover = false, ...props }, ref) => {
-  const Comp = asChild ? Slot : "button"
-
+  // Simplified version that doesn't use Slot
   return (
-    <Comp
+    <button
       ref={ref}
       data-sidebar="menu-action"
       className={cn(
@@ -713,10 +713,9 @@ const SidebarMenuSubButton = React.forwardRef<
     isActive?: boolean
   }
 >(({ asChild = false, size = "md", isActive, className, ...props }, ref) => {
-  const Comp = asChild ? Slot : "a"
-
+  // Simplified version that doesn't use Slot
   return (
-    <Comp
+    <a
       ref={ref}
       data-sidebar="menu-sub-button"
       data-size={size}
